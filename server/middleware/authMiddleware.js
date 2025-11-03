@@ -1,0 +1,1 @@
+// Simple password check for admin routes (no full auth)

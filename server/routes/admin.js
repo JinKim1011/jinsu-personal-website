@@ -1,0 +1,1 @@
+// Admin API (e.g., /api/admin/content-edit), password protected.

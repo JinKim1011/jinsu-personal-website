@@ -1,0 +1,1 @@
+// Public API (e.g., /api/blog, /api/work).

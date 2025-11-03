@@ -1,0 +1,1 @@
+// Work/project schema (title, description, links).

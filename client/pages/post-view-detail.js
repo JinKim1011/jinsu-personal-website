@@ -1,0 +1,1 @@
+// Post detail behaviors (load content, format).

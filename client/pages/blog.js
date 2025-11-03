@@ -1,0 +1,1 @@
+// Blog page behaviors (render list, filters later)
