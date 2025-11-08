@@ -13,4 +13,10 @@ export async function mountNavigation(targetSelector = '.nav') {
     document.querySelectorAll('.nav a').forEach(a => {
         a.classList.toggle('active', a.getAttribute('href').endsWith(current));
     });
+
+    // 
+    const adminLink = document.getElementById('admin');
+    if (adminLink && current === 'admin.html') {
+        adminLink.classList.remove('hide');
+    }
 }

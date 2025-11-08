@@ -1,0 +1,7 @@
+.nav a.active {
+    color: blue;
+}
+
+.hide {
+    display: none !important;
+}
