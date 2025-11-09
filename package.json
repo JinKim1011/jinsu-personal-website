@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "serve:static": "npx http-server ./client -p 8080 -c-1"
+        "serve:static": "npx http-server ./client -p 8080 -c-1",
+        "start": "node server.js"
     }
 }
