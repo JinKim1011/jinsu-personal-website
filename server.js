@@ -15,3 +15,7 @@ app.get('/', (req, res) => {
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
 module.exports = app;
+
+// Admin routes
+const adminRoutes = require('./server/routes/admin');
+app.use('/api/admin', adminRoutes);
