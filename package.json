@@ -2,5 +2,7 @@
     "name": "jinsu-personal-website",
     "version": "0.0.1",
     "private": true,
-    "scripts": {}
+    "scripts": {
+        "serve:static": "npx http-server ./client -p 8080 -c-1"
+    }
 }
