@@ -1,2 +1,97 @@
-/* Reusable utility classes. */
-/* Reset, containers, grids, buttons, cards, breakpoints. */
+/* Typography styles */
+h1 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+h2 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-normal);
+}
+
+h3 {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-normal);
+}
+
+p {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+}
+
+small {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-normal);
+}
+
+/* layout styles */
+.page {
+    max-width: var(--max-page-width);
+    margin: 0 auto;
+    padding: var(--spacing-xxxl);
+}
+
+.content {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: var(--spacing-xxxl) var(--spacing-xxxl) var(--spacing-xxxl);
+}
+
+.items-responsive {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xxxl);
+}
+
+.items-responsive>* {
+    flex: 1 1 100%;
+}
+
+/* breakpoints */
+/* medium ≥ 640px: switch to 2-column grid */
+@media (min-width: 640px) {
+    .page {
+        padding: var(--spacing-xl) var(--spacing-xxxl) var(--spacing-xxxl);
+    }
+
+    .content {
+        padding: var(--spacing-xxxl);
+    }
+
+    .items-responsive {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-xxxl);
+        /* keep 64px */
+    }
+}
+
+/* large ≥ 1024px: 3 columns */
+@media (min-width: 1024px) {
+    .page {
+        padding: var(--spacing-s) var(--spacing-m) var(--spacing-xl);
+    }
+
+    .content {
+        padding: var(--spacing-xxl) var(--spacing-m) var(--spacing-xl);
+    }
+
+    .items-responsive {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+/* utility classes */
+.hide {
+    display: none !important;
+}
