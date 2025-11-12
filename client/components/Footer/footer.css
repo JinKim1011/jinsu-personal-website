@@ -1,0 +1,38 @@
+.footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xxxl);
+}
+
+.button-group {
+    display: flex;
+    gap: var(--spacing-s);
+}
+
+@media (min-width: 640px) {
+    .footer {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer>div {
+        grid-column: 1;
+    }
+
+    .footer>p {
+        grid-column: 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    .footer {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .footer>div {
+        grid-column: 1 / span 2;
+    }
+
+    .footer>p {
+        grid-column: 3;
+    }
+}
