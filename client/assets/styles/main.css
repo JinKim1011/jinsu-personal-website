@@ -3,11 +3,7 @@
 @import url("./utilities/utilities.css");
 @import url('../../components/button/button.css');
 @import url('../../components/footer/footer.css');
-
-
-.nav a.active {
-    color: blue;
-}
+@import url('../../components/navigation/navigation.css');
 
 html,
 body {
