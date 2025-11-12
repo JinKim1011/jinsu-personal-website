@@ -14,7 +14,18 @@ export async function mountNavigation(targetSelector = '.nav') {
         a.classList.toggle('active', a.getAttribute('href').endsWith(current));
     });
 
-    // 
+    // set headline text based on current page
+    const headlineEl = document.getElementById('nav-headline');
+    if (headlineEl) {
+        const headlines = {
+            'index.html': "Hello, I'm Jin",
+            'blog.html': "Notes & Reflections",
+            'work.html': "Designing for impact",
+            'admin.html': "Editing posts",
+        };
+        headlineEl.textContent = headlines[current] || 'Headline';
+    }
+
     const adminLink = document.getElementById('admin');
     if (adminLink && current === 'admin.html') {
         adminLink.classList.remove('hide');

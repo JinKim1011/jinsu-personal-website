@@ -5,5 +5,8 @@
     "scripts": {
         "serve:static": "npx http-server ./client -p 8080 -c-1",
         "start": "node server.js"
+    },
+    "devDependencies": {
+        "scss": "^0.2.4"
     }
 }

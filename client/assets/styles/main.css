@@ -1,7 +1,39 @@
-.nav a.active {
-    color: blue;
+@import url("./fonts.css");
+@import url("./design-tokens/tokens.css");
+@import url("./utilities/utilities.css");
+@import url('../../components/button/button.css');
+@import url('../../components/footer/footer.css');
+@import url('../../components/navigation/navigation.css');
+
+html,
+body {
+    padding: 0;
+    margin: 0 auto;
+
+    background: var(--color-background-strong);
+
+    color: var(--color-text-strong);
+    font-family: var(--font-sans);
+    line-height: var(--line-normal);
 }
 
-.hide {
-    display: none !important;
+body {
+    max-width: var(--max-page-width);
+    height: 100vh;
+    overflow-y: scroll;
+
+    padding: var(--spacing-s) var(--spacing-m) var(--spacing-xl);
+    background: var(--color-background-primary);
+}
+
+@media (min-width: 640px) {
+    body {
+        padding: var(--spacing-xl) var(--spacing-xxxl) var(--spacing-xxxl);
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        padding: var(--spacing-xxxl);
+    }
 }
