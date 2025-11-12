@@ -35,11 +35,6 @@ small {
 }
 
 /* layout styles */
-.page {
-    max-width: var(--max-page-width);
-    margin: 0 auto;
-    padding: var(--spacing-xxxl);
-}
 
 .content {
     max-width: var(--max-content-width);
@@ -60,10 +55,6 @@ small {
 /* breakpoints */
 /* medium ≥ 640px: switch to 2-column grid */
 @media (min-width: 640px) {
-    .page {
-        padding: var(--spacing-xl) var(--spacing-xxxl) var(--spacing-xxxl);
-    }
-
     .content {
         padding: var(--spacing-xxxl);
     }
@@ -78,10 +69,6 @@ small {
 
 /* large ≥ 1024px: 3 columns */
 @media (min-width: 1024px) {
-    .page {
-        padding: var(--spacing-s) var(--spacing-m) var(--spacing-xl);
-    }
-
     .content {
         padding: var(--spacing-xxl) var(--spacing-m) var(--spacing-xl);
     }
