@@ -24,6 +24,12 @@
     --spacing-xxxl: 64px;
     --spacing-xxxxl: 80px;
 
+    /*radius */
+    --radius-s: 4px;
+    --radius-m: 6px;
+    --radius-l: 12px;
+    --radius-circle: 1000px;
+
     /* font size */
     --font-size-xl: 32px;
     --font-size-lg: 24px;
