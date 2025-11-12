@@ -7,10 +7,33 @@
 
 html,
 body {
-    margin: 0;
     padding: 0;
-    background: var(--color-background-primary);
+    margin: 0 auto;
+
+    background: var(--color-background-strong);
+
     color: var(--color-text-strong);
     font-family: var(--font-sans);
     line-height: var(--line-normal);
+}
+
+body {
+    max-width: var(--max-page-width);
+    height: 100vh;
+    overflow-y: scroll;
+
+    padding: var(--spacing-s) var(--spacing-m) var(--spacing-xl);
+    background: var(--color-background-primary);
+}
+
+@media (min-width: 640px) {
+    body {
+        padding: var(--spacing-xl) var(--spacing-xxxl) var(--spacing-xxxl);
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        padding: var(--spacing-xxxl);
+    }
 }
