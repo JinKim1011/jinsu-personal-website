@@ -10,6 +10,7 @@
     --color-text-strong: rgb(var(--color-text-strong-rgb));
     --color-text-default: rgb(var(--color-text-strong-rgb) / 0.7);
     --color-text-muted: rgb(var(--color-text-strong-rgb) / 0.5);
+    --color-text-hover: rgb(var(--color-text-strong-rgb) / 0.3);
 
     /* spacing */
     --spacing-xxxxs: 2px;
