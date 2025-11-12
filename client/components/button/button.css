@@ -5,9 +5,11 @@
     justify-content: center;
     color: var(--color-text-strong);
 
+    height: fit-content;
     text-decoration: none;
     border: none;
     cursor: pointer;
+
 }
 
 
@@ -34,6 +36,7 @@
 
 .button.type-void {
     background: transparent;
+    border-radius: var(--radius-m);
 }
 
 .button.type-void:hover {
