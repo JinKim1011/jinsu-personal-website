@@ -1,6 +1,7 @@
 @import url("./fonts.css");
 @import url("./design-tokens/tokens.css");
 @import url("./utilities/utilities.css");
+@import url("./components/button/button.css");
 
 
 .nav a.active {
