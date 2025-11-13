@@ -1,0 +1,15 @@
+.blog-list__item-date {
+    color: var(--color-text-muted);
+}
+
+.blog-page-list {
+    margin: var(--spacing-xxxl) 0 calc(var(--spacing-xxxl)*2);
+}
+
+
+@media (min-width: 1024px) {
+    .blog-page-list>.blog-list {
+
+        grid-template-columns: 1fr;
+    }
+}
