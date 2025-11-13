@@ -1,3 +1,7 @@
+.home-page-main {
+    margin: var(--spacing-xxxl) 0 var(--spacing-xxxxl);
+}
+
 .profile-section {
     margin: var(--spacing-xxxl) 0;
 }
