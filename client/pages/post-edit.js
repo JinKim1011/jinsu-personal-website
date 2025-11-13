@@ -7,7 +7,15 @@ export function render(text) {
         if (l.startsWith('## ')) return '<h2>' + esc(l.slice(3)) + '</h2>';
         if (l.startsWith('### ')) return '<h3>' + esc(l.slice(3)) + '</h3>';
         if (l.startsWith('- ')) return '<li>' + esc(l.slice(2)) + '</li>';
-        if (/^https?:\/\/.+\.(png|jpg|jpeg|gif|webp)$/.test(l.trim())) return '<img style="max-width:100%" src="' + esc(l.trim()) + '"/>';
+        // markdown image: ![alt text](https://...png "optional title")
+        const mdImage = l.match(/^!\[([^\]]*)\]\((https?:\/\/[^\s)]+)(?:\s+"([^"]+)")?\)/);
+        if (mdImage) {
+            const [, alt, url, title] = mdImage;
+            return '<img style="max-width:100%" src="' + esc(url) + '" alt="' + esc(alt) + '"' + (title ? ' title="' + esc(title) + '"' : '') + '/>';
+        }
+
+        // bare image URL (allow query/hash params)
+        if (/^https?:\/\/.+\.(png|jpg|jpeg|gif|webp)(?:[?#].*)?$/i.test(l.trim())) return '<img style="max-width:100%" src="' + esc(l.trim()) + '"/>';
         return '<p>' + esc(l) + '</p>';
     }).join('');
 
@@ -24,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!input || !preview) return;
 
-    // small esc helper for metadata
     const esc = s => String(s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
     const update = () => {
@@ -35,10 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let dateStr = '';
         if (dateVal) {
             const d = new Date(dateVal);
-            if (!isNaN(d)) dateStr = d.toLocaleDateString();
+            if (!isNaN(d)) {
+                // Format as abbreviated month + year (e.g. "Jul 2025")
+                dateStr = d.toLocaleString(undefined, { month: 'short', year: 'numeric' });
+            }
         }
 
-        // build preview HTML: metadata (if present) + rendered body
         let html = '';
         if (title) html += '<h1>' + esc(title) + '</h1>';
         if (summary) html += '<p class="post-summary">' + esc(summary) + '</p>';
