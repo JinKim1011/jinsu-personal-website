@@ -1,0 +1,26 @@
+/* edit page */
+.form-row {
+    margin-bottom: var(--spacing-m);
+}
+
+input {
+    padding: var(--spacing-xxs);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 450px;
+    overflow-y: scroll;
+}
+
+.form-row>label {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-normal);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-muted);
+}
+
+/* detail page style */

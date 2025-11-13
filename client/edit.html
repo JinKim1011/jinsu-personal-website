@@ -12,15 +12,36 @@
 </head>
 
 <body>
-    <nav class="nav"></nav>
+    <h2>Edit Post</h2>
 
     <main>
-        <i>this is post edit admin page</i>
+        <form id="post-form">
+            <div class="form-row items-responsive">
+                <input id="title" class="items-responsive__primary" name="title" type="text" placeholder="Title" />
+            </div>
+
+            <div class="form-row items-responsive">
+                <input id="summary" class="items-responsive__primary" name="summary" type="text"
+                    placeholder="Summary" />
+            </div>
+
+            <div class="form-row items-responsive">
+                <input id="date" class="items-responsive__primary" name="date" type="date" />
+            </div>
+
+            <div class="form-row items-responsive">
+                <textarea id="input" class="items-responsive__primary" name="body"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button id="save" type="button" class="button size-m type-fill">Save</button>
+            </div>
+        </form>
+
+        <div id="preview" class="post-preview" aria-live="polite">
+        </div>
     </main>
 
-    <textarea id="input"></textarea>
-
-    <div id="preview"></div>
 
     <footer class="footer"></footer>
 </body>

@@ -21,7 +21,7 @@ export async function mountNavigation(targetSelector = '.nav') {
             'index.html': "Hello, I'm Jin",
             'blog.html': "Notes & Reflections",
             'work.html': "Designing for impact",
-            'admin.html': "Editing posts",
+            'admin.html': "Editing Posts",
         };
         headlineEl.textContent = headlines[current] || 'Headline';
     }
