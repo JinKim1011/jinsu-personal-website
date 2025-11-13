@@ -6,6 +6,15 @@
     src: url("/assets/fonts/Inter-Regular.woff2") format("woff2");
 }
 
+/* medium (500) */
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/assets/fonts/Inter-Medium.woff2") format("woff2");
+}
+
 @font-face {
     font-family: "Inter";
     font-style: normal;
@@ -21,6 +30,15 @@
     font-weight: 600;
     font-display: swap;
     src: url("/assets/fonts/InterDisplay-SemiBold.woff2") format("woff2");
+}
+
+/* medium (500) for Inter Display */
+@font-face {
+    font-family: "Inter Display";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/assets/fonts/InterDisplay-Medium.woff2") format("woff2");
 }
 
 @font-face {
