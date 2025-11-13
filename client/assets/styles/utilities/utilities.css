@@ -4,6 +4,7 @@ h1 {
     font-size: var(--font-size-xl);
     line-height: var(--line-height-tight);
     letter-spacing: var(--letter-spacing-tight);
+    font-weight: var(--font-weight-bold);
 }
 
 h2 {
@@ -11,13 +12,15 @@ h2 {
     font-size: var(--font-size-lg);
     line-height: var(--line-height-tight);
     letter-spacing: var(--letter-spacing-normal);
+    font-weight: var(--font-weight-semibold);
 }
 
 h3 {
     font-family: var(--font-sans);
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
     line-height: var(--line-height-tight);
     letter-spacing: var(--letter-spacing-normal);
+    font-weight: var(--font-weight-semibold);
 }
 
 p {
@@ -25,13 +28,15 @@ p {
     font-size: var(--font-size-md);
     line-height: var(--line-height-normal);
     letter-spacing: var(--letter-spacing-normal);
+    font-weight: var(--font-weight-regular);
 }
 
 small {
     font-family: var(--font-sans);
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
     line-height: var(--line-height-tight);
     letter-spacing: var(--letter-spacing-normal);
+    font-weight: var(--font-weight-regular);
 }
 
 /* layout styles */
@@ -65,7 +70,16 @@ small {
         gap: var(--spacing-xxxl);
         /* keep 64px */
     }
+
+    .items-responsive>.items-responsive__primary {
+        grid-column: 1;
+    }
+
+    .items-responsive>.items-responsive__secondary {
+        grid-column: 2;
+    }
 }
+
 
 /* large ≥ 1024px: 3 columns */
 @media (min-width: 1024px) {
@@ -76,6 +90,15 @@ small {
     .items-responsive {
         grid-template-columns: 1fr 1fr 1fr;
     }
+
+    .items-responsive>.items-responsive__primary {
+        grid-column: 1 / span 2;
+    }
+
+    .items-responsive>.items-responsive__secondary {
+        grid-column: 3;
+    }
+
 }
 
 /* utility classes */
