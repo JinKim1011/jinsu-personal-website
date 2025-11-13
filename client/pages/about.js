@@ -1,1 +1,0 @@
-// About/Home page behaviors
