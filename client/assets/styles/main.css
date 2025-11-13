@@ -5,6 +5,8 @@
 @import url('../../components/footer/footer.css');
 @import url('../../components/navigation/navigation.css');
 @import url('../../pages/about.css');
+@import url('../../pages/work.css');
+@import url('../../pages/blog.css');
 
 html,
 body {
@@ -20,7 +22,7 @@ body {
 
 body {
     max-width: var(--max-page-width);
-    /* height: 100vh; */
+    min-height: 100vh;
     overflow-y: scroll;
 
     padding: var(--spacing-s) var(--spacing-m) var(--spacing-xl);
