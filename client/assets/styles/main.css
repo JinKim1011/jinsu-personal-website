@@ -1,14 +1,14 @@
 @import url("./fonts.css");
 @import url("./design-tokens/tokens.css");
 @import url("./utilities/utilities.css");
-@import url('../../components/button/button.css');
+@import url("./utilities/button.css");
 @import url('../../components/footer/footer.css');
 @import url('../../components/navigation/navigation.css');
-@import url('../../pages/about.css');
-@import url('../../pages/work.css');
-@import url('../../pages/blog.css');
-@import url('../../pages/edit.css');
-@import url('../../pages/post.css');
+@import url('./pages/about.css');
+@import url('./pages/work.css');
+@import url('./pages/blog.css');
+@import url('./pages/edit.css');
+@import url('./pages/post.css');
 
 html,
 body {
