@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (pw === 'admin123') {
             try { sessionStorage.setItem('isAdmin', 'true'); } catch (e) { }
-            window.location.href = 'admin.html';
+            window.location.href = '/admin';
         } else {
             if (error) { error.textContent = 'wrong password'; error.classList.remove('hide'); }
         }
