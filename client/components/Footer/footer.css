@@ -2,6 +2,8 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--spacing-xxxl);
+
+    color: var(--color-text-muted);
 }
 
 .button-group {
@@ -19,7 +21,7 @@
         grid-column: 1;
     }
 
-    .footer>p {
+    .footer>small {
         grid-column: 2;
     }
 }
@@ -33,7 +35,7 @@
         grid-column: 1 / span 2;
     }
 
-    .footer>p {
+    .footer>small {
         grid-column: 3;
     }
 }
