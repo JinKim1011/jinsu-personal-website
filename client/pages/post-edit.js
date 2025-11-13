@@ -18,14 +18,42 @@ export function render(text) {
 document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('input');
     const preview = document.getElementById('preview');
+    const titleEl = document.getElementById('title');
+    const summaryEl = document.getElementById('summary');
+    const dateEl = document.getElementById('date');
 
     if (!input || !preview) return;
 
+    // small esc helper for metadata
+    const esc = s => String(s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
     const update = () => {
-        preview.innerHTML = render(input.value);
+        const title = titleEl ? titleEl.value.trim() : '';
+        const summary = summaryEl ? summaryEl.value.trim() : '';
+        const dateVal = dateEl ? dateEl.value : '';
+
+        let dateStr = '';
+        if (dateVal) {
+            const d = new Date(dateVal);
+            if (!isNaN(d)) dateStr = d.toLocaleDateString();
+        }
+
+        // build preview HTML: metadata (if present) + rendered body
+        let html = '';
+        if (title) html += '<h1>' + esc(title) + '</h1>';
+        if (summary) html += '<p class="post-summary">' + esc(summary) + '</p>';
+        if (dateStr) html += '<p class="post-date">' + esc(dateStr) + '</p>';
+
+        html += render(input.value || '');
+
+        preview.innerHTML = html;
     };
 
-    input.addEventListener('input', update);
+    // listen for changes to metadata and body
+    [input, titleEl, summaryEl, dateEl].forEach(el => {
+        if (!el) return;
+        el.addEventListener('input', update);
+    });
 
     update();
 });
