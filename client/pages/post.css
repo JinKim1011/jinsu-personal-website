@@ -1,0 +1,98 @@
+/* Post preview (how published post will look) */
+
+.post-preview {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: var(--spacing-xxxl) var(--spacing-xxxl) var(--spacing-xxxl);
+}
+
+/* Metadata */
+.post-preview>h1 {
+    width: 100%;
+    text-align: center;
+}
+
+.post-preview .post-summary {
+    width: 100%;
+    text-align: center;
+    margin: 0 0 var(--spacing-xxs) 0;
+
+    font-family: var(--font-sans);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-medium);
+    letter-spacing: var(--letter-spacing-normal);
+}
+
+.post-preview .post-date {
+    width: 100%;
+    text-align: center;
+    margin: 0 0 calc(var(--spacing-xxl)*3) 0;
+
+
+    font-family: var(--font-sans);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-medium);
+    letter-spacing: var(--letter-spacing-normal);
+    color: var(--color-text-muted);
+}
+
+/* Content styles */
+.post-preview p {
+    margin: var(--spacing-m) 0 0 0;
+}
+
+.post-preview h2 {
+    margin: var(--spacing-xxxxl) 0 0 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+}
+
+.post-preview h3 {
+    margin: var(--spacing-xxl) 0 0 0;
+    font-weight: var(--font-weight-medium);
+}
+
+.post-preview ul {
+    margin: var(--spacing-m) 0 0 0;
+    padding-left: var(--spacing-l);
+}
+
+.post-preview li {
+    margin: var(--spacing-xxxs) 0 0 0;
+}
+
+.post-preview img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: var(--spacing-m) 0;
+}
+
+.post-preview pre,
+.post-preview code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
+    background: var(--color-background-light);
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-s);
+}
+
+.post-preview blockquote {
+    margin: 0 0 var(--spacing-m) 0;
+    padding-left: var(--spacing-m);
+    border-left: 3px solid var(--color-background-strong);
+    color: var(--color-text-default);
+}
+
+@media (min-width: 640px) {
+    .post-preview {
+        padding: var(--spacing-xxxl);
+    }
+}
+
+@media (min-width: 1024px) {
+    .post-preview {
+        padding: var(--spacing-xxl) var(--spacing-m) var(--spacing-xl);
+    }
+}
