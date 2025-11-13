@@ -1,3 +1,7 @@
+.home-page-main {
+    margin: var(--spacing-xxxl) 0 var(--spacing-xxxxl);
+}
+
 .profile-section {
     margin: var(--spacing-xxxl) 0;
 }
@@ -71,11 +75,13 @@
 .blog-list__item>.blog-list__item-summary {
     margin: var(--spacing-xxxs) 0 0;
     color: var(--color-text-default);
+    max-width: 512px;
 }
 
 .work-list__item>.work-list__item-summary {
     margin: var(--spacing-xxxs) 0 0;
     color: var(--color-text-default);
+    max-width: 512px;
 }
 
 @media (min-width: 640px) {
