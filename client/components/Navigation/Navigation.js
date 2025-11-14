@@ -1,33 +1,52 @@
 export async function mountNavigation(targetSelector = '.nav') {
     const placeholder = document.querySelector(targetSelector);
-
     if (!placeholder) return;
+    if (placeholder.children.length === 0) {
+        const res = await fetch('./components/navigation/index.html');
+        if (res && res.ok) {
+            const html = await res.text();
+            placeholder.outerHTML = html;
+        }
+    }
 
-    const res = await fetch('./components/navigation/index.html');
-    const html = await res.text();
+    const currentPath = (location.pathname || '/').replace(/\/$/, '') || '/';
 
-    placeholder.outerHTML = html;
+    function normalizeHref(href) {
+        if (!href) return '';
+        href = href.trim();
+        if (href.startsWith('/')) return href.replace(/\/$/, '') || '/';
+        if (href.endsWith('.html')) {
+            if (href === 'index.html') return '/';
+            return '/' + href.replace(/\.html$/, '').replace(/^\//, '');
+        }
+        return href.replace(/\/$/, '');
+    }
 
-    // hightlight the active link
-    const current = (location.pathname.split('/').pop() || 'index.html');
+    // Highlight active navigation link
     document.querySelectorAll('.nav a').forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href').endsWith(current));
+        const href = a.getAttribute('href') || '';
+        const norm = normalizeHref(href);
+        a.classList.toggle('active', norm === currentPath);
     });
 
-    // set headline text based on current page
+    // Set headline based on current path
     const headlineEl = document.getElementById('nav-headline');
     if (headlineEl) {
         const headlines = {
-            'index.html': "Hello, I'm Jin",
-            'blog.html': "Notes & Reflections",
-            'work.html': "Designing for impact",
-            'admin.html': "Editing Posts",
+            '/': "Hello, I'm Jin",
+            '/blog': "Notes & Reflections",
+            '/work': "Designing for impact",
+            '/admin': "Editing Posts",
         };
-        headlineEl.textContent = headlines[current] || 'Headline';
+        headlineEl.textContent = headlines[currentPath] || 'Headline';
     }
 
+    // Show/hide admin link based on session storage
     const adminLink = document.getElementById('admin');
-    if (adminLink && current === 'admin.html') {
-        adminLink.classList.remove('hide');
+    if (adminLink) {
+        let isAdmin = false;
+        try { isAdmin = sessionStorage.getItem('isAdmin') === 'true'; } catch (e) { }
+        if (isAdmin || currentPath === '/admin') adminLink.classList.remove('hide');
+        else adminLink.classList.add('hide');
     }
 }
