@@ -5,10 +5,9 @@
 
     <body class=" admin-page">
         <%- include('../partials/navigation') %>
-            <a class="button size-m type-fill bold" href="/edit">New Post</a>
             <main class="admin-page-list items-responsive">
                 <div class="admin-page-edit-list items-responsive__primary">
-                    <div class="blog-section blog-section-admin">
+                    <div class="blog-section-admin">
                         <a class="button size-l type-void" href="/blog">
                             Blog
                         </a>
@@ -24,7 +23,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="work-section">
+                    <div class="work-section-admin">
                         <a class="button size-l type-void" href="/work">
                             Work
                         </a>
@@ -39,6 +38,9 @@
                             </li>
                         </ul>
                     </div>
+                </div>
+                <div class="items-responsive__secondary">
+                    <a class="button size-m type-fill bold" href="/edit">New Post</a>
                 </div>
             </main>
 

@@ -6,6 +6,10 @@
     margin: var(--spacing-xxxl) 0 calc(var(--spacing-xxxl)*2);
 }
 
+.work-section-admin {
+    margin: var(--spacing-xxxl) 0 calc(var(--spacing-xxxl)*2);
+}
+
 
 @media (min-width: 1024px) {
     .blog-page-list>.blog-list {
