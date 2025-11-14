@@ -8,7 +8,17 @@
         <h2>Edit Post</h2>
 
         <main>
-            <form id="post-form">
+            <form id="post-form" action="/api/posts" method="POST">
+
+                <div class="form-row items-responsive">
+                    <input id="category" class="items-responsive__primary" name="category" placeholder="category" />
+                </div>
+
+                <div class="form-row items-responsive">
+                    <input id="slug" class="items-responsive__primary" name="slug" type="text" placeholder="Slug"
+                        required />
+                </div>
+
                 <div class="form-row items-responsive">
                     <input id="title" class="items-responsive__primary" name="title" type="text" placeholder="Title" />
                 </div>
