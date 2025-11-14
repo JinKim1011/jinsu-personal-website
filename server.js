@@ -82,6 +82,9 @@ app.post('/api/posts', async (req, res) => {
     }
 });
 
+// API routes
+app.use('/api', require('./server/routes/api'));
+
 const port = process.env.PORT || 3000;
 (async () => {
     await connectToDatabase(process.env.MONGODB_URI); // e.g., mongodb://127.0.0.1:27017/portfolio
