@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<%- include('../partials/head') %>
+
+    <body class=" admin-page">
+        <%- include('../partials/navigation') %>
+            <a class="button size-m type-fill bold" href="/edit">New Post</a>
+            <main class="admin-page-list items-responsive">
+                <div class="admin-page-edit-list items-responsive__primary">
+                    <div class="blog-section blog-section-admin">
+                        <a class="button size-l type-void" href="/blog">
+                            Blog
+                        </a>
+                        <ul class="blog-list">
+                            <li class="blog-list__item">
+                                <a class="blog-list__item-link button size-m type-void" href="">
+                                    One Ticket, End to End
+                                </a>
+                                <p class="blog-list__item-summary">
+                                    Testing my build–ship–learn cycle on a small scale — and
+                                    sharpening how I work.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="work-section">
+                        <a class="button size-l type-void" href="/work">
+                            Work
+                        </a>
+                        <ul class="work-list">
+                            <li class="work-list__item">
+                                <a class="work-list__item-link button size-m type-void" href="">
+                                    Onboarding for Faster Value
+                                </a>
+                                <p class="work-list__item-summary">
+                                    Faster time-to-value through onboarding, resulting in 6x paid conversion growth.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </main>
+
+            <%- include('../partials/footer') %>
+    </body>
+
+
+</html>
