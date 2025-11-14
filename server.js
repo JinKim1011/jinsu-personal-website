@@ -74,8 +74,23 @@ app.get('/api/posts', async (req, res) => {
 });
 app.post('/api/posts', async (req, res) => {
     try {
-        const { title, slug, content, tags = [], published = false } = req.body;
-        const created = await Post.create({ title, slug, content, tags, published });
+        const { title, slug, content, tags = [], published = false, summary, date, category } = req.body;
+
+        const categoryArr = Array.isArray(category)
+            ? category
+            : (category ? [String(category).trim()] : []);
+
+        const created = await Post.create({
+            title,
+            slug,
+            content,
+            tags,
+            published,
+            summary: summary || (content ? String(content).slice(0, 140) : ''),
+            date: date ? new Date(date) : new Date(),
+            category: categoryArr.length ? categoryArr : ['blog']
+        });
+
         res.status(201).json(created);
     } catch (err) {
         res.status(400).json({ error: err.message });
