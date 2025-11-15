@@ -41,11 +41,21 @@ app.use(express.static(path.join(__dirname, 'client'), { index: false }));
 const pages = [
     { path: '/', view: 'index' },
     { path: '/work', view: 'work' },
-    { path: '/blog', view: 'blog' },
     { path: '/edit', view: 'edit' }
 ];
 pages.forEach(p => {
     app.get(p.path, (req, res) => res.render(p.view));
+});
+
+// blog page
+app.get('/blog', async (req, res) => {
+    try {
+        const posts = await Post.find().sort({ date: -1 }).lean();
+        res.render('blog', { posts });
+    } catch (err) {
+        console.error("Failed to load blog posts", err);
+        res.status(500).send("Server Error");
+    }
 });
 
 // admin pages
