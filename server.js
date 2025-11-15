@@ -1,5 +1,6 @@
 require('dotenv').config(); // load environment variables
 
+// core
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
@@ -10,8 +11,8 @@ const adminRoutes = require('./server/routes/admin');
 const apiRouter = require('./server/routes/api');
 const errorHandler = require('./server/middleware/error-handeler');
 
+// database
 const { connectToDatabase } = require('./server/config/db');
-const Post = require('./server/models/Post');
 
 const app = express();
 
@@ -31,35 +32,18 @@ app.use(session({
     }
 }));
 
-// API routes
+// API routes (mount admin API)
 app.use('/api/admin', adminRoutes);
 
-// set up EJS as the templating engine
+// view engine
 app.set('view engine', 'ejs');
-app.set('views', './server/views/pages');
+app.set('views', './server/views');
 
-// serve static files
+// static assets (client/) served at web root
 app.use(express.static(path.join(__dirname, 'client'), { index: false }));
 
-const pages = [
-    { path: '/', view: 'index' },
-    { path: '/work', view: 'work' },
-    { path: '/edit', view: 'edit' }
-];
-pages.forEach(p => {
-    app.get(p.path, (req, res) => res.render(p.view));
-});
-
-// blog page
-app.get('/blog', async (req, res) => {
-    try {
-        const posts = await Post.find().sort({ date: -1 }).lean();
-        res.render('blog', { posts });
-    } catch (err) {
-        console.error("Failed to load blog posts", err);
-        res.status(500).send("Server Error");
-    }
-});
+// mount api router (additional API endpoints)
+app.use('/api', apiRouter);
 
 // admin pages
 app.get('/admin', (req, res) => {
