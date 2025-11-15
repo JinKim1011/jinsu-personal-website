@@ -7,7 +7,8 @@ const path = require('path');
 // routers / app-specific modules
 const pagesRouter = require('./server/routes/pages');
 const adminRoutes = require('./server/routes/admin');
-const { ADMIN_PASSWORD } = require('./server/config/secrets');
+const apiRouter = require('./server/routes/api');
+const errorHandler = require('./server/middleware/error-handeler');
 
 const { connectToDatabase } = require('./server/config/db');
 const Post = require('./server/models/Post');
@@ -79,38 +80,9 @@ app.post('/password', (req, res) => {
 // health route
 app.get('/health', (req, res) => res.json({ ok: true }));
 
-// json api routes for posts
-app.get('/api/posts', async (req, res) => {
-    const posts = await Post.find().sort({ createdAt: -1 }).lean();
-    res.json(posts);
-});
-app.post('/api/posts', async (req, res) => {
-    try {
-        const { title, slug, content, tags = [], published = false, summary, date, category } = req.body;
-
-        const categoryArr = Array.isArray(category)
-            ? category
-            : (category ? [String(category).trim()] : []);
-
-        const created = await Post.create({
-            title,
-            slug,
-            content,
-            tags,
-            published,
-            summary: summary || (content ? String(content).slice(0, 140) : ''),
-            date: date ? new Date(date) : new Date(),
-            category: categoryArr.length ? categoryArr : ['blog']
-        });
-
-        res.status(201).json(created);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
-});
-
-// API routes
-app.use('/api', require('./server/routes/api'));
+// error handlers
+app.use(errorHandler.notFound);
+app.use(errorHandler.errorHandler);
 
 const port = process.env.PORT || 3000;
 (async () => {
