@@ -55,6 +55,17 @@ router.get('/posts/:slug', async (req, res) => {
     res.render('pages/post', { title: `Post — ${post.title}`, post, postHtml });
 });
 
+router.get('/posts/:slug/edit', async (req, res) => {
+    try {
+        const post = await Post.findOne({ slug: req.params.slug }).lean();
+        if (!post) throw new Error('Post not found');
+        res.render('pages/edit', { title: `Edit Post — ${post.title}`, post });
+    } catch (err) {
+        console.error(err);
+        res.status(404).send("Couldn't find the post to edit.");
+    }
+});
+
 router.get('/admin', async (req, res) => {
     try {
         if (!req.session || !req.session.isAdmin) return res.redirect('/password');
