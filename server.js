@@ -4,6 +4,8 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 
+// routers / app-specific modules
+const pagesRouter = require('./server/routes/pages');
 const adminRoutes = require('./server/routes/admin');
 const { ADMIN_PASSWORD } = require('./server/config/secrets');
 
