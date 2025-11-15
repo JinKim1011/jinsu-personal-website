@@ -1,16 +1,31 @@
 <!doctype html>
 <html lang="en">
 
-<%- include('../partials/head', { title: 'Post — Jinsu Kim' }) %>
+<%- include('../partials/head', { title: post.title + ' — Jinsu Kim' }) %>
 
-    <body class=" post-page">
+    <body>
 
-        <main class="work-page-list">
+        <main class=" post-page">
 
+            <h1>
+                <%= post.title %>
+            </h1>
+
+            <div class="post-summary">
+                <%= post.summary %>
+            </div>
+
+            <p class="post-date">
+                <%= post.date ? new Date(post.date).toLocaleString('en-US', { month: 'short' , year: 'numeric' }) : ''
+                    %>
+            </p>
+
+            <div class="post-content">
+                <%- postHtml %>
+            </div>
         </main>
 
         <%- include('../partials/footer') %>
     </body>
-
 
 </html>
