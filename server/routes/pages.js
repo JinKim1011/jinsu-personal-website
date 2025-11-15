@@ -55,9 +55,15 @@ router.get('/posts/:slug', async (req, res) => {
     res.render('pages/post', { title: `Post — ${post.title}`, post, postHtml });
 });
 
-router.get('/admin', (req, res) => {
-    if (!req.session || !req.session.isAdmin) return res.redirect('/password');
-    res.render('pages/admin', { title: 'Admin' });
+router.get('/admin', async (req, res) => {
+    try {
+        if (!req.session || !req.session.isAdmin) return res.redirect('/password');
+        const posts = await Post.find().sort({ createdAt: -1 }).lean();
+        res.render('pages/admin', { title: 'Admin', posts });
+    } catch (err) {
+        console.error('Failed to render admin page', err);
+        res.status(500).send('Server Error');
+    }
 });
 
 router.get('/edit', (req, res) => {
