@@ -1,1 +1,0 @@
-//  Blog post schema (title, body, tags, dates).
