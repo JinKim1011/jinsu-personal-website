@@ -42,24 +42,11 @@ app.set('views', './server/views');
 // static assets (client/) served at web root
 app.use(express.static(path.join(__dirname, 'client'), { index: false }));
 
+// mount pages router to handle dynamic page routes (/, /blog, /posts/:slug, /admin, /edit, etc.)
+app.use('/', pagesRouter);
+
 // mount api router (additional API endpoints)
 app.use('/api', apiRouter);
-
-// admin pages
-app.get('/admin', (req, res) => {
-    if (!req.session || !req.session.isAdmin) return res.redirect('/password');
-    res.render('admin');
-});
-app.get('/password', (req, res) => res.render('password')); // Render password input page
-// Handle password submission
-app.post('/password', (req, res) => {
-    const pw = req.body.password;
-    if (pw === ADMIN_PASSWORD) {
-        if (req.session) req.session.isAdmin = true;
-        return res.redirect('/admin');
-    }
-    return res.status(401).render('password', { error: 'Wrong password' });
-});
 
 // health route
 app.get('/health', (req, res) => res.json({ ok: true }));
