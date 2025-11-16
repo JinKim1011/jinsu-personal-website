@@ -8,7 +8,7 @@ const postSchema = new mongoose.Schema(
         summary: { type: String, required: true },
         date: { type: Date, required: true },
         content: { type: String, required: true },
-        published: { type: Boolean, default: false }
+        published: { type: Boolean, default: true }
     },
     { timestamps: true }
 );
