@@ -17,7 +17,8 @@
                                 if(Array.isArray(cat)) return cat.includes('blog'); return cat==='blog' ;
                                 }).forEach(function(post){ %>
                                 <li class="blog-list__item">
-                                    <a class="blog-list__item-link button size-m type-void" href="">
+                                    <a class="blog-list__item-link button size-m type-void"
+                                        href="/posts/<%= post.slug %>/edit">
                                         <%= post.title %>
                                     </a>
                                     <p class="blog-list__item-summary">
@@ -36,7 +37,8 @@
                                 if(Array.isArray(cat)) return cat.includes('work'); return cat==='work' ;
                                 }).forEach(function(post){ %>
                                 <li class="work-list__item">
-                                    <a class="work-list__item-link button size-m type-void" href="">
+                                    <a class="work-list__item-link button size-m type-void"
+                                        href="/posts/<%= post.slug %>/edit">
                                         <%= post.title %>
                                     </a>
                                     <p class="work-list__item-summary">
@@ -48,7 +50,7 @@
                     </div>
                 </div>
                 <div class="items-responsive__secondary">
-                    <a class="button size-m type-fill bold" href="/edit">New Post</a>
+                    <a class="button size-m type-fill bold" href="/posts/new">New Post</a>
                 </div>
             </main>
 
