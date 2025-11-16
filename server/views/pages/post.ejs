@@ -13,27 +13,27 @@
             </a>
 
 
-        <main class=" post-page">
+            <main class=" post-page">
 
-            <h1>
-                <%= post.title %>
-            </h1>
+                <h1>
+                    <%= post.title %>
+                </h1>
 
-            <div class="post-summary">
-                <%= post.summary %>
-            </div>
+                <div class="post-summary">
+                    <%= post.summary %>
+                </div>
 
-            <p class="post-date">
-                <%= post.date ? new Date(post.date).toLocaleString('en-US', { month: 'short' , year: 'numeric' }) : ''
-                    %>
-            </p>
+                <p class="post-date">
+                    <%= post.date ? new Date(post.date).toLocaleString('en-US', { month: 'short' , year: 'numeric' })
+                        : '' %>
+                </p>
 
-            <div class="post-content">
-                <%- postHtml %>
-            </div>
-        </main>
+                <div class="post-content">
+                    <%- postHtml %>
+                </div>
+            </main>
 
-        <%- include('../partials/footer') %>
+
     </body>
 
 </html>
