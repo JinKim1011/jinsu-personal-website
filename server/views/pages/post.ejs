@@ -5,6 +5,14 @@
 
     <body>
 
+        <% const cats=Array.isArray(post.category) ? post.category : [post.category].filter(Boolean); const
+            primary=cats.find(c=> ['blog','work'].includes(c)) || 'blog';
+            %>
+            <a class="button size-m type-fill bold" href="/<%= primary %>">
+                ← All <%= primary %> posts
+            </a>
+
+
         <main class=" post-page">
 
             <h1>
