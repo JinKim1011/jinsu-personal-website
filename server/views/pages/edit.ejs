@@ -5,47 +5,54 @@
     extraScripts: '<script defer type="module" src="/pages/post-edit.js"></script>' }) %>
 
     <body>
-        <h2>New Post</h2>
+        <% const isEdit=mode==='edit' ; %>
+            <h2>
+                <%= isEdit ? 'Edit Post' : 'New Post' %>
+            </h2>
 
-        <main>
-            <form id="post-form" action="/api/posts" method="POST">
+            <main>
+                <form id="post-form" action="<%= isEdit ? ('/api/posts/' + post.slug) : '/api/posts' %>" method="POST">
 
-                <div class="form-row items-responsive">
-                    <input id="category" class="items-responsive__primary" name="category" placeholder="category" />
+                    <div class="form-row items-responsive">
+                        <input id="category" class="items-responsive__primary" name="category"
+                            placeholder="category (work or blog)" value="<%= post?.category || '' %>" />
+                    </div>
+
+                    <div class="form-row items-responsive">
+                        <input id="slug" class="items-responsive__primary" name="slug" type="text" placeholder="Slug"
+                            value="<%= post?.slug || '' %>" required />
+                    </div>
+
+                    <div class="form-row items-responsive">
+                        <input id="title" class="items-responsive__primary" name="title" type="text" placeholder="Title"
+                            value="<%= post?.title || '' %>" required />
+                    </div>
+
+                    <div class="form-row items-responsive">
+                        <input id="summary" class="items-responsive__primary" name="summary" type="text"
+                            placeholder="Summary" value="<%= post?.summary || '' %>" required />
+                    </div>
+
+                    <div class="form-row items-responsive">
+                        <input id="date" class="items-responsive__primary" name="date" type="date"
+                            value="<%= (post && post.date) ? (new Date(post.date)).toISOString().slice(0,10) : '' %>" />
+                    </div>
+
+                    <div class="form-row items-responsive">
+                        <textarea id="input" class="items-responsive__primary" name="content"
+                            placeholder="Markdown"><%= post?.content || '' %></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button id="save" type="submit" class="button size-m type-fill">
+                            <%= isEdit ? 'Save Changes' : 'Create Post' %>
+                        </button>
+                    </div>
+                </form>
+
+                <div id="preview" class="post-preview" aria-live="polite">
                 </div>
-
-                <div class="form-row items-responsive">
-                    <input id="slug" class="items-responsive__primary" name="slug" type="text" placeholder="Slug"
-                        required />
-                </div>
-
-                <div class="form-row items-responsive">
-                    <input id="title" class="items-responsive__primary" name="title" type="text" placeholder="Title"
-                        required />
-                </div>
-
-                <div class="form-row items-responsive">
-                    <input id="summary" class="items-responsive__primary" name="summary" type="text"
-                        placeholder="Summary" required />
-                </div>
-
-                <div class="form-row items-responsive">
-                    <input id="date" class="items-responsive__primary" name="date" type="date" />
-                </div>
-
-                <div class="form-row items-responsive">
-                    <textarea id="input" class="items-responsive__primary" name="content"
-                        placeholder="Markdown"></textarea>
-                </div>
-
-                <div class="form-actions">
-                    <button id="save" type="submit" class="button size-m type-fill">Save</button>
-                </div>
-            </form>
-
-            <div id="preview" class="post-preview" aria-live="polite">
-            </div>
-        </main>
+            </main>
     </body>
 
 
