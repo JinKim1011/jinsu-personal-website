@@ -14,7 +14,15 @@ router.post('/posts', async (req, res) => {
             content: req.body.content,
             published: req.body.published
         });
+
         await post.save();
+
+        // handle form submission redirect
+        const isForm = (req.headers['content-type'] || '').includes('application/x-www-form-urlencoded');
+        if (isForm) {
+            return res.redirect(`/posts/${encodeURIComponent(post.slug)}`);
+        }
+
         res.status(201).json({ ok: true, post });
     } catch (err) {
         res.status(400).json({ error: 'Could not create post', details: err.message });
