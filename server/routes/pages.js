@@ -23,6 +23,21 @@ router.get('/work', async (req, res) => {
     res.render('pages/work', { title: 'Work — Jinsu Kim', posts });
 });
 
+router.get('/posts/new', (req, res) => {
+    res.render('pages/edit', { title: 'New Post — Jinsu Kim', mode: 'create', post: null });
+});
+
+router.get('/posts/:slug/edit', async (req, res) => {
+    try {
+        const post = await Post.findOne({ slug: req.params.slug }).lean();
+        if (!post) throw new Error('Post not found');
+        res.render('pages/edit', { title: `Edit Post — ${post.title}`, mode: 'edit', post });
+    } catch (err) {
+        console.error(err);
+        res.status(404).send("Couldn't find the post to edit.");
+    }
+});
+
 router.get('/posts/:slug', async (req, res) => {
     const post = await Post.findOne({ slug: req.params.slug }).lean();
     if (!post) return res.status(404).render('pages/post', { title: 'Not found', post: { title: 'Not found' } });
@@ -55,17 +70,6 @@ router.get('/posts/:slug', async (req, res) => {
     res.render('pages/post', { title: `Post — ${post.title}`, post, postHtml });
 });
 
-router.get('/posts/:slug/edit', async (req, res) => {
-    try {
-        const post = await Post.findOne({ slug: req.params.slug }).lean();
-        if (!post) throw new Error('Post not found');
-        res.render('pages/edit', { title: `Edit Post — ${post.title}`, post });
-    } catch (err) {
-        console.error(err);
-        res.status(404).send("Couldn't find the post to edit.");
-    }
-});
-
 router.get('/admin', async (req, res) => {
     try {
         if (!req.session || !req.session.isAdmin) return res.redirect('/password');
@@ -75,10 +79,6 @@ router.get('/admin', async (req, res) => {
         console.error('Failed to render admin page', err);
         res.status(500).send('Server Error');
     }
-});
-
-router.get('/edit', (req, res) => {
-    res.render('pages/edit', { title: 'Edit Post — Jinsu Kim' });
 });
 
 router.get('/password', (req, res) => {
