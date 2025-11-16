@@ -40,6 +40,18 @@ router.get('/posts/:slug', async (req, res) => {
     res.json(post);
 });
 
+router.get('/posts/:slug/delete', async (req, res) => {
+    try {
+        await Post.findOneAndDelete({ slug: req.params.slug }).exec();
+
+        // redirect to admin page after deletion
+        res.redirect('/admin');
+    } catch (err) {
+        console.error(err);
+        res.status(400).send('Error: No post was deleted.');
+    }
+});
+
 router.get('/health', (req, res) => {
     res.json({ ok: true });
 });
