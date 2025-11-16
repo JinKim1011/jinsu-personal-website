@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
+const passwordGate = require('../middleware/auth-middleware');
 
 // create a new post from json body
 router.post('/posts', passwordGate, async (req, res) => {
