@@ -3,7 +3,7 @@ const router = express.Router();
 const Post = require('../models/Post');
 
 // create a new post from json body
-router.post('/posts', async (req, res) => {
+router.post('/posts', passwordGate, async (req, res) => {
     try {
         const post = new Post({
             slug: req.body.slug,
@@ -40,7 +40,7 @@ router.get('/posts/:slug', async (req, res) => {
     res.json(post);
 });
 
-router.get('/posts/:slug/delete', async (req, res) => {
+router.get('/posts/:slug/delete', passwordGate, async (req, res) => {
     try {
         await Post.findOneAndDelete({ slug: req.params.slug }).exec();
 
