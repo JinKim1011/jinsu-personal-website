@@ -1,16 +1,39 @@
 <!doctype html>
 <html lang="en">
 
-<%- include('../partials/head') %>
+<%- include('../partials/head', { title: post.title + ' — Jinsu Kim' }) %>
 
-    <body class=" post-page">
+    <body>
 
-        <main class="work-page-list">
+        <% const cats=Array.isArray(post.category) ? post.category : [post.category].filter(Boolean); const
+            primary=cats.find(c=> ['blog','work'].includes(c)) || 'blog';
+            %>
+            <a class="button size-m type-fill bold" href="/<%= primary %>">
+                ← All <%= primary %> posts
+            </a>
 
-        </main>
 
-        <%- include('../partials/footer') %>
+            <main class=" post-page">
+
+                <h1>
+                    <%= post.title %>
+                </h1>
+
+                <div class="post-summary">
+                    <%= post.summary %>
+                </div>
+
+                <p class="post-date">
+                    <%= post.date ? new Date(post.date).toLocaleString('en-US', { month: 'short' , year: 'numeric' })
+                        : '' %>
+                </p>
+
+                <div class="post-content">
+                    <%- postHtml %>
+                </div>
+            </main>
+
+
     </body>
-
 
 </html>

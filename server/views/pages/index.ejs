@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 
-<%- include('../partials/head') %>
+<%- include('../partials/head', { title: 'Home — Jinsu Kim' }) %>
 
     <body class=" home-page">
         <%- include('../partials/navigation') %>
@@ -71,39 +71,51 @@
                 </div>
 
                 <div class="items-responsive">
-                    <div class="items-responsive__primary">
+                    <div class="items-responsive__tertiary info-section">
+                        <a class="button size-l type-void" href="">
+                            This Website
+                        </a>
+                    </div>
+                    <div class="items-responsive__fourth post-section">
                         <div class="blog-section">
                             <a class="button size-l type-void" href="./blog">
                                 Blog
                             </a>
 
                             <ul class="blog-list">
-                                <li class="blog-list__item">
-                                    <a class="blog-list__item-link button size-m type-void" href="">
-                                        One Ticket, End to End
-                                    </a>
-                                    <p class="blog-list__item-summary">
-                                        Testing my build–ship–learn cycle on a small scale — and
-                                        sharpening how I work.
-                                    </p>
-                                </li>
+                                <% (posts || []).filter(function(p){ if (!p) return false; var cat=p.category;
+                                    if(Array.isArray(cat)) return cat.includes('blog'); return cat==='blog' ;
+                                    }).forEach(function(post){ %>
+                                    <li class="blog-list__item">
+                                        <a class="blog-list__item-link button size-m type-void"
+                                            href="/posts/<%= post.slug %>">
+                                            <%= post.title %>
+                                        </a>
+                                        <p class="blog-list__item-summary">
+                                            <%= post.summary %>
+                                        </p>
+                                    </li>
+                                    <% }) %>
                             </ul>
                         </div>
-                    </div>
-                    <div class="items-responsive__secondary">
                         <div class="work-section">
                             <a class="button size-l type-void" href="./work">
                                 Work
                             </a>
                             <ul class="work-list">
-                                <li class="work-list__item">
-                                    <a class="work-list__item-link button size-m type-void" href="">
-                                        Onboarding for Faster Value
-                                    </a>
-                                    <p class="work-list__item-summary">
-                                        Faster time-to-value through onboarding, resulting in 6x paid conversion growth.
-                                    </p>
-                                </li>
+                                <% (posts || []).filter(function(p){ if (!p) return false; var cat=p.category;
+                                    if(Array.isArray(cat)) return cat.includes('work'); return cat==='work' ;
+                                    }).forEach(function(post){ %>
+                                    <li class="work-list__item">
+                                        <a class="work-list__item-link button size-m type-void"
+                                            href="/posts/<%= post.slug %>">
+                                            <%= post.title %>
+                                        </a>
+                                        <p class="work-list__item-summary">
+                                            <%= post.summary %>
+                                        </p>
+                                    </li>
+                                    <% }) %>
                             </ul>
                         </div>
                     </div>

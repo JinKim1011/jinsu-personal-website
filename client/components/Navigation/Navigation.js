@@ -2,7 +2,7 @@ export async function mountNavigation(targetSelector = '.nav') {
     const placeholder = document.querySelector(targetSelector);
     if (!placeholder) return;
     if (placeholder.children.length === 0) {
-        const res = await fetch('./components/navigation/index.html');
+        const res = await fetch('/components/navigation/index.html');
         if (res && res.ok) {
             const html = await res.text();
             placeholder.outerHTML = html;

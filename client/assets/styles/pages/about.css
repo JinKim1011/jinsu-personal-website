@@ -51,6 +51,7 @@
     margin-bottom: var(--spacing-xxxl);
 }
 
+.info-section::before,
 .blog-section::before,
 .work-section::before {
     content: "";
@@ -94,12 +95,26 @@
 }
 
 @media (min-width: 1024px) {
-    .blog-list {
+    .post-section {
+        display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 0 var(--spacing-xxxl);
+    }
+
+    .blog-list {
+        grid-template-columns: 1fr;
     }
 
     .work-list {
         grid-template-columns: 1fr;
+    }
+
+    .blog-section {
+        grid-column: 1;
+    }
+
+    .work-section {
+        grid-column: 2;
     }
 }
 

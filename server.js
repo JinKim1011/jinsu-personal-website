@@ -1,14 +1,18 @@
 require('dotenv').config(); // load environment variables
 
+// core
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
 
+// routers / app-specific modules
+const pagesRouter = require('./server/routes/pages');
 const adminRoutes = require('./server/routes/admin');
-const { ADMIN_PASSWORD } = require('./server/config/secrets');
+const apiRouter = require('./server/routes/api');
+const errorHandler = require('./server/middleware/error-handeler');
 
+// database
 const { connectToDatabase } = require('./server/config/db');
-const Post = require('./server/models/Post');
 
 const app = express();
 
@@ -28,59 +32,28 @@ app.use(session({
     }
 }));
 
-// API routes
+// API routes (mount admin API)
 app.use('/api/admin', adminRoutes);
 
-// set up EJS as the templating engine
+// view engine
 app.set('view engine', 'ejs');
-app.set('views', './server/views/pages');
+app.set('views', './server/views');
 
-// serve static files
+// static assets (client/) served at web root
 app.use(express.static(path.join(__dirname, 'client'), { index: false }));
 
-const pages = [
-    { path: '/', view: 'index' },
-    { path: '/work', view: 'work' },
-    { path: '/blog', view: 'blog' },
-    { path: '/edit', view: 'edit' }
-];
-pages.forEach(p => {
-    app.get(p.path, (req, res) => res.render(p.view));
-});
+// mount pages router to handle dynamic page routes (/, /blog, /posts/:slug, /admin, /edit, etc.)
+app.use('/', pagesRouter);
 
-// admin pages
-app.get('/admin', (req, res) => {
-    if (!req.session || !req.session.isAdmin) return res.redirect('/password');
-    res.render('admin');
-});
-app.get('/password', (req, res) => res.render('password')); // Render password input page
-// Handle password submission
-app.post('/password', (req, res) => {
-    const pw = req.body.password;
-    if (pw === ADMIN_PASSWORD) {
-        if (req.session) req.session.isAdmin = true;
-        return res.redirect('/admin');
-    }
-    return res.status(401).render('password', { error: 'Wrong password' });
-});
+// mount api router (additional API endpoints)
+app.use('/api', apiRouter);
 
 // health route
 app.get('/health', (req, res) => res.json({ ok: true }));
 
-// json api routes for posts
-app.get('/api/posts', async (req, res) => {
-    const posts = await Post.find().sort({ createdAt: -1 }).lean();
-    res.json(posts);
-});
-app.post('/api/posts', async (req, res) => {
-    try {
-        const { title, slug, content, tags = [], published = false } = req.body;
-        const created = await Post.create({ title, slug, content, tags, published });
-        res.status(201).json(created);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
-});
+// error handlers
+app.use(errorHandler.notFound);
+app.use(errorHandler.errorHandler);
 
 const port = process.env.PORT || 3000;
 (async () => {

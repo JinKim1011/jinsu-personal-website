@@ -78,6 +78,14 @@ small {
     .items-responsive>.items-responsive__secondary {
         grid-column: 2;
     }
+
+    .items-responsive>.items-responsive__tertiary {
+        grid-column: 1;
+    }
+
+    .items-responsive>.items-responsive__fourth {
+        grid-column: 2;
+    }
 }
 
 
@@ -97,6 +105,15 @@ small {
 
     .items-responsive>.items-responsive__secondary {
         grid-column: 3;
+    }
+
+    .items-responsive>.items-responsive__tertiary {
+        grid-column: 1;
+    }
+
+    .items-responsive>.items-responsive__fourth {
+        grid-column: 2 / span 2;
+        grid-template-columns: 1fr 1fr;
     }
 
 }
