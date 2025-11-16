@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
 const { ADMIN_PASSWORD } = require('../config/secrets');
+const passwordGate = require('../middleware/auth-middleware');
 
 router.get('/', async (req, res) => {
     try {
@@ -23,11 +24,11 @@ router.get('/work', async (req, res) => {
     res.render('pages/work', { title: 'Work — Jinsu Kim', posts });
 });
 
-router.get('/posts/new', (req, res) => {
+router.get('/posts/new', passwordGate, (req, res) => {
     res.render('pages/edit', { title: 'New Post — Jinsu Kim', mode: 'create', post: null });
 });
 
-router.get('/posts/:slug/edit', async (req, res) => {
+router.get('/posts/:slug/edit', passwordGate, async (req, res) => {
     try {
         const post = await Post.findOne({ slug: req.params.slug }).lean();
         if (!post) throw new Error('Post not found');
