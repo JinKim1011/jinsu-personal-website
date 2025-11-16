@@ -45,8 +45,14 @@
 
                     <div class="form-actions">
                         <button id="save" type="submit" class="button size-m type-fill">
-                            <%= isEdit ? 'Save Changes' : 'Create Post' %>
+                            <%= isEdit ? 'Save' : 'Create' %>
                         </button>
+                        <% if (isEdit) { %>
+                            <button id="delete" type="submit" class="button size-m type-fill"
+                                formaction="/api/posts/<%= post.slug %>/delete" formmethod="POST">
+                                Delete
+                            </button>
+                            <% } %>
                     </div>
                 </form>
 
