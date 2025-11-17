@@ -8,6 +8,8 @@
         "dev": "nodemon server.js"
     },
     "devDependencies": {
+        "eslint": "^9.39.1",
+        "prettier": "^3.6.2",
         "scss": "^0.2.4"
     },
     "dependencies": {
