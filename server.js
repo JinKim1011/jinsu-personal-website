@@ -4,6 +4,7 @@ require('dotenv').config(); // load environment variables
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
+const MongoStore = require('connect-mongo');
 
 // routes & middleware
 const pagesRouter = require('./server/routes/pages');
@@ -18,13 +19,35 @@ const { connectToDatabase } = require('./server/config/db');
 const app = express();
 
 // session management
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1);
+}
+
+let sessionStore;
+if (process.env.MONGODB_URI) {
+    try {
+        sessionStore = MongoStore.create({
+            mongoUrl: process.env.MONGODB_URI,
+            collectionName: 'sessions',
+            ttl: 14 * 24 * 60 * 60 // 14 days
+        });
+        console.log('Session store: MongoDB (connect-mongo)');
+    } catch (err) {
+        console.error('Failed to create MongoDB session store, falling back to MemoryStore', err);
+        sessionStore = undefined;
+    }
+} else {
+    console.warn('MONGODB_URI not set — using MemoryStore for sessions (not recommended in production)');
+}
+
 app.use(session({
+    store: sessionStore, // if undefined, express-session will use MemoryStore
     secret: process.env.SESSION_SECRET || 'dev-session-secret',
     resave: false,
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        secure: false,
+        secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax'
     }
 }));
