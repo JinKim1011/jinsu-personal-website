@@ -1,25 +1,31 @@
 // Simple markdown-like renderer
 export function render(text) {
-    const esc = s => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const esc = s => String(s || '').replace(/[&<>\"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-    const lines = text.split('\n').map(l => {
-        if (l.startsWith('# ')) return '<h1>' + esc(l.slice(2)) + '</h1>';
-        if (l.startsWith('## ')) return '<h2>' + esc(l.slice(3)) + '</h2>';
-        if (l.startsWith('### ')) return '<h3>' + esc(l.slice(3)) + '</h3>';
-        if (l.startsWith('- ')) return '<li>' + esc(l.slice(2)) + '</li>';
+    const lines = String(text).split('\n').map(l => {
+        const raw = String(l || '');
+        const trimmed = raw.trim();
+        // skip empty lines (avoid emitting empty <p> tags)
+        if (!trimmed) return '';
+
+        if (raw.startsWith('# ')) return '<h1>' + esc(raw.slice(2)) + '</h1>';
+        if (raw.startsWith('## ')) return '<h2>' + esc(raw.slice(3)) + '</h2>';
+        if (raw.startsWith('### ')) return '<h3>' + esc(raw.slice(4)) + '</h3>';
+        const listMatch = raw.match(/^\s*-\s+(.*)/);
+        if (listMatch) return '<li>' + esc(listMatch[1]) + '</li>';
         // markdown image: ![alt text](https://...png "optional title")
-        const mdImage = l.match(/^!\[([^\]]*)\]\((https?:\/\/[^\s)]+)(?:\s+"([^"]+)")?\)/);
+        const mdImage = raw.match(/^!\[([^\]]*)\]\((https?:\/\/[^\s)]+)(?:\s+"([^\"]+)")?\)/);
         if (mdImage) {
             const [, alt, url, title] = mdImage;
-            return '<img style="max-width:100%" src="' + esc(url) + '" alt="' + esc(alt) + '"' + (title ? ' title="' + esc(title) + '"' : '') + '/>';
+            return `<img style="max-width:100%" src="${esc(url)}" alt="${esc(alt)}"${title ? ` title="${esc(title)}"` : ''}/>`;
         }
 
         // bare image URL (allow query/hash params)
-        if (/^https?:\/\/.+\.(png|jpg|jpeg|gif|webp)(?:[?#].*)?$/i.test(l.trim())) return '<img style="max-width:100%" src="' + esc(l.trim()) + '"/>';
-        return '<p>' + esc(l) + '</p>';
+        if (/^https?:\/\/.*\.(png|jpg|jpeg|gif|webp)(?:[?#].*)?$/i.test(trimmed)) return `<img style="max-width:100%" src="${esc(trimmed)}"/>`;
+        return '<p>' + esc(raw) + '</p>';
     }).join('');
 
-    return lines.replace(/(<li>.*?<\/li>)+/gs, m => '<ul>' + m + '</ul>');
+    return lines.replace(/(?:<li>[\s\S]*?<\/li>)+/g, m => '<ul>' + m + '</ul>');
 }
 
 // Setup live preview
