@@ -1,8 +1,4 @@
 export async function mountNavigation(targetSelector = '.nav') {
-    // Prefer server-rendered markup: find the navigation element and operate on it.
-    // Previously this module would fetch `/components/navigation/index.html` and
-    // replace a placeholder. In production we render navigation server-side,
-    // so avoid the extra network request and just use the existing DOM.
     const navEl = document.querySelector(targetSelector);
     if (!navEl) return;
 
