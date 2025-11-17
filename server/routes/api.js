@@ -92,8 +92,8 @@ router.post('/posts/:slug/delete', passwordGate, async (req, res) => {
     }
 });
 
-router.get('/health', (req, res) => {
-    res.json({ ok: true });
-});
+const { healthHandler } = require('../middleware/health');
+
+router.get('/health', healthHandler);
 
 module.exports = router;
