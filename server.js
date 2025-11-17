@@ -10,6 +10,7 @@ const pagesRouter = require('./server/routes/pages');
 const adminRoutes = require('./server/routes/admin');
 const apiRouter = require('./server/routes/api');
 const errorHandler = require('./server/middleware/error-handeler');
+const { healthHandler } = require('./server/middleware/health');
 
 // database
 const { connectToDatabase } = require('./server/config/db');
@@ -43,11 +44,6 @@ app.use(express.static(path.join(__dirname, 'client'), { index: false }));
 app.use('/', pagesRouter);
 app.use('/api', apiRouter);
 app.use('/api/admin', adminRoutes);
-
-// health route
-const { healthHandler } = require('./server/middleware/health');
-
-// health route
 app.get('/health', healthHandler);
 
 // error handlers
