@@ -1,13 +1,10 @@
 export async function mountNavigation(targetSelector = '.nav') {
-    const placeholder = document.querySelector(targetSelector);
-    if (!placeholder) return;
-    if (placeholder.children.length === 0) {
-        const res = await fetch('/components/navigation/index.html');
-        if (res && res.ok) {
-            const html = await res.text();
-            placeholder.outerHTML = html;
-        }
-    }
+    // Prefer server-rendered markup: find the navigation element and operate on it.
+    // Previously this module would fetch `/components/navigation/index.html` and
+    // replace a placeholder. In production we render navigation server-side,
+    // so avoid the extra network request and just use the existing DOM.
+    const navEl = document.querySelector(targetSelector);
+    if (!navEl) return;
 
     const currentPath = (location.pathname || '/').replace(/\/$/, '') || '/';
 
@@ -23,7 +20,7 @@ export async function mountNavigation(targetSelector = '.nav') {
     }
 
     // Highlight active navigation link
-    document.querySelectorAll('.nav a').forEach(a => {
+    navEl.querySelectorAll('a').forEach(a => {
         const href = a.getAttribute('href') || '';
         const norm = normalizeHref(href);
         a.classList.toggle('active', norm === currentPath);
@@ -42,7 +39,7 @@ export async function mountNavigation(targetSelector = '.nav') {
     }
 
     // Show/hide admin link based on session storage
-    const adminLink = document.getElementById('admin');
+    const adminLink = navEl.querySelector('#admin') || document.getElementById('admin');
     if (adminLink) {
         let isAdmin = false;
         try { isAdmin = sessionStorage.getItem('isAdmin') === 'true'; } catch (e) { }
