@@ -6,7 +6,7 @@ const passwordGate = require('../middleware/auth-middleware');
 
 router.get('/', async (req, res) => {
     try {
-        const posts = await Post.find().sort({ createdAt: -1 }).lean();
+        const posts = await Post.find().sort({ createdAt: 1 }).lean();
         res.render('pages/index', { title: 'Home — Jinsu Kim', posts });
     } catch (err) {
         console.error('Failed to render home page', err);
@@ -15,12 +15,12 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/blog', async (req, res) => {
-    const posts = await Post.find({ category: "blog" }).sort({ createdAt: -1 }).lean();
+    const posts = await Post.find({ category: "blog" }).sort({ createdAt: 1 }).lean();
     res.render('pages/blog', { title: 'Blog — Jinsu Kim', posts });
 });
 
 router.get('/work', async (req, res) => {
-    const posts = await Post.find({ category: "work" }).sort({ createdAt: -1 }).lean();
+    const posts = await Post.find({ category: "work" }).sort({ createdAt: 1 }).lean();
     res.render('pages/work', { title: 'Work — Jinsu Kim', posts });
 });
 
@@ -79,7 +79,7 @@ router.get('/posts/:slug', async (req, res) => {
 router.get('/admin', async (req, res) => {
     try {
         if (!req.session || !req.session.isAdmin) return res.redirect('/password');
-        const posts = await Post.find().sort({ createdAt: -1 }).lean();
+        const posts = await Post.find().sort({ createdAt: 1 }).lean();
         res.render('pages/admin', { title: 'Admin', posts });
     } catch (err) {
         console.error('Failed to render admin page', err);

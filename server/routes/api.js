@@ -31,7 +31,7 @@ router.post('/posts', passwordGate, async (req, res) => {
 });
 
 router.get('/posts', async (req, res) => {
-    const posts = await Post.find().sort({ createdAt: -1 }).lean();
+    const posts = await Post.find().sort({ createdAt: 1 }).lean();
     res.json(posts);
 });
 
