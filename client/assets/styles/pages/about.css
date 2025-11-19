@@ -85,6 +85,11 @@
     max-width: 512px;
 }
 
+.info-section_text {
+    margin: var(--spacing-l) 0 0;
+    color: var(--color-text-default);
+}
+
 @media (min-width: 640px) {
 
     .blog-list,

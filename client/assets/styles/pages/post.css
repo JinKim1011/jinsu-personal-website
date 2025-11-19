@@ -4,7 +4,7 @@
 .post-page {
     max-width: var(--max-content-width);
     margin: 0 auto;
-    padding: var(--spacing-xxxl) var(--spacing-xxxl) var(--spacing-xxxl);
+    padding: var(--spacing-xxxl) 0 var(--spacing-xxxl);
 
     display: flex;
     flex-direction: column;
