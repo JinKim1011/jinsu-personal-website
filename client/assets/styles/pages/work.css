@@ -5,3 +5,19 @@
 .work-page-list {
     margin: var(--spacing-xxxl) 0 calc(var(--spacing-xxxl)*2);
 }
+
+.work-list__item {
+    gap: var(--spacing-xxs);
+}
+
+@media (min-width: 1024px) {
+    .work-list__item {
+        gap: var(--spacing-xxxl);
+    }
+}
+
+@media (min-width: 640px) {
+    .work-list__item {
+        gap: var(--spacing-xxxl);
+    }
+}

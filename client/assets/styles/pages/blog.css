@@ -10,6 +10,9 @@
     margin: var(--spacing-xxxl) 0 calc(var(--spacing-xxxl)*2);
 }
 
+.blog-list__item {
+    gap: var(--spacing-xxs);
+}
 
 @media (min-width: 1024px) {
     .blog-page-list>.blog-list {
@@ -19,5 +22,15 @@
 
     .blog-section-admin>.blog-list {
         grid-template-columns: 1fr;
+    }
+
+    .blog-list__item {
+        gap: var(--spacing-xxxl);
+    }
+}
+
+@media (min-width: 640px) {
+    .blog-list__item {
+        gap: var(--spacing-xxxl);
     }
 }
