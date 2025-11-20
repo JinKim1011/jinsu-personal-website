@@ -11,6 +11,8 @@
     flex-direction: column;
     align-items: flex-start;
     gap: var(--spacing-xl);
+
+    order: 2;
 }
 
 .text-wrapper {
@@ -32,10 +34,11 @@
     flex-direction: column;
     align-items: flex-start;
     gap: var(--spacing-l);
+
+    order: 1;
 }
 
 .profile-section-img>img {
-    max-width: 253px;
     width: 100%;
     height: auto;
 }
@@ -97,6 +100,20 @@
         grid-template-columns: 1fr;
         gap: var(--spacing-xxl) var(--spacing-xxxl);
     }
+
+    .profile-section-img>img {
+        max-width: 253px;
+        width: 100%;
+        height: auto;
+    }
+
+    .profile-section-text {
+        order: 1;
+    }
+
+    .profile-section-img {
+        order: 2;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -120,6 +137,20 @@
 
     .work-section {
         grid-column: 2;
+    }
+
+    .profile-section-img>img {
+        max-width: 253px;
+        width: 100%;
+        height: auto;
+    }
+
+    .profile-section-text {
+        order: 1;
+    }
+
+    .profile-section-img {
+        order: 2;
     }
 }
 
