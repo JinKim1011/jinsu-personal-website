@@ -8,7 +8,9 @@
 
             <main class="blog-page-list">
                 <ul class="blog-list">
-                    <% (typeof posts !=='undefined' ? posts : []).forEach(function(post){ %>
+                    <% (posts || []).filter(function(post){ if (!post) return false; var category=post.category;
+                        if(Array.isArray(category)) return category.includes('blog'); return category==='blog' ;
+                        }).forEach(function(post){ %>
                         <li class="blog-list__item items-responsive">
                             <div class="blog-list__item items-responsive__primary">
                                 <a class="blog-list__item-link button size-m type-void" href="/posts/<%= post.slug %>">
