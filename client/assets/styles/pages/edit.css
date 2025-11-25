@@ -23,4 +23,6 @@ textarea {
     color: var(--color-text-muted);
 }
 
-/* detail page style */
+.back-button-wrapper {
+    margin-bottom: var(--spacing-xxxl);
+}

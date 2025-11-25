@@ -6,6 +6,14 @@
 
     <body>
         <% const isEdit=mode==='edit' ; %>
+
+            <div class="back-button-wrapper">
+                <a class="button size-m type-fill bold" href="/admin">
+                    ← Back to list
+                </a>
+            </div>
+
+
             <h2>
                 <%= isEdit ? 'Edit Post' : 'New Post' %>
             </h2>
