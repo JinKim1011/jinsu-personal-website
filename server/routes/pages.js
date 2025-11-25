@@ -48,7 +48,7 @@ router.get('/posts/:slug', async (req, res) => {
         const lines = String(text).split('\n').map(l => {
             const raw = String(l || '');
             const trimmed = raw.trim();
-            // skip empty lines (avoid emitting empty <p> tags)
+
             if (!trimmed) return '';
 
             if (raw.startsWith('# ')) return '<h1>' + esc(raw.slice(2)) + '</h1>';
