@@ -48,7 +48,7 @@ router.get('/posts/:slug', async (req, res) => {
         const lines = String(text).split('\n').map(l => {
             const raw = String(l || '');
             const trimmed = raw.trim();
-            // skip empty lines (avoid emitting empty <p> tags)
+
             if (!trimmed) return '';
 
             if (raw.startsWith('# ')) return '<h1>' + esc(raw.slice(2)) + '</h1>';
@@ -64,7 +64,7 @@ router.get('/posts/:slug', async (req, res) => {
             const ytMatch = trimmed.match(/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/|youtube\.com\/embed\/)([A-Za-z0-9_-]{11})(?:[^\s]*)$/i);
             if (ytMatch) {
                 const id = ytMatch[1];
-                return `<iframe width="728" height="410" src="https://www.youtube.com/embed/${esc(id)}" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+                return `<iframe src="https://www.youtube.com/embed/${esc(id)}" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
             }
             if (/^https?:\/\/.*\.(png|jpg|jpeg|gif|webp)(?:[?#].*)?$/i.test(trimmed)) return `<img style="max-width:100%" src="${esc(trimmed)}"/>`;
             return '<p>' + esc(raw) + '</p>';
