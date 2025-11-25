@@ -97,6 +97,16 @@
     margin: var(--spacing-m) 0;
 }
 
+.post-preview iframe,
+.post-content iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    display: block;
+    height: auto;
+    margin: var(--spacing-m) 0;
+}
+
 .post-preview pre,
 .post-content code {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
