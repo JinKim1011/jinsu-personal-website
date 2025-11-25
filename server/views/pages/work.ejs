@@ -8,12 +8,12 @@
 
             <main class="work-page-list">
                 <ul class="work-list">
-                    <% (posts || []).filter(function(p){ if (!p) return false; var cat=p.category;
-                        if(Array.isArray(cat)) return cat.includes('work'); return cat==='work' ;
+                    <% (posts || []).filter(function(post){ if (!post) return false; var category=post.category;
+                        if(Array.isArray(category)) return category.includes('work'); return category==='work' ;
                         }).forEach(function(post){ %>
                         <li class="work-list__item items-responsive">
                             <div class="work-list__item items-responsive__primary">
-                                <a class="work-list__item-link button size-m type-void" href="">
+                                <a class="work-list__item-link button size-m type-void" href="/posts/<%= post.slug %>">
                                     <%= post.title %>
                                 </a>
                                 <p class="work-list__item-summary">
