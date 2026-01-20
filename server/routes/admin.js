@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const passwordGate = require('../middleware/auth-middleware');
 
-router.post('/content', passwordGate, (req, res) => {
+router.post('/content', passwordGate, (response) => {
     // placeholder for create/update content
-    res.json({ ok: true });
+    response.json({ ok: true });
 });
 
 // Create

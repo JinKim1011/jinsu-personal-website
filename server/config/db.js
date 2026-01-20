@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Attach event listeners to the Mongoose connection
 function _attachListeners(conn) {
     conn.on('connected', () => console.log('💽 MongoDB connected'));
     conn.on('error', (err) => console.error('🔌 MongoDB error:', err));

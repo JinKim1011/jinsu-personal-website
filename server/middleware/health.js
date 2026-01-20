@@ -1,3 +1,3 @@
-module.exports.healthHandler = (req, res) => {
-    res.json({ ok: true });
+module.exports.healthHandler = (response) => {
+    response.json({ ok: true });
 };
