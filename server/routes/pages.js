@@ -21,7 +21,7 @@ router.get('/blog', async (req, res) => {
 
 router.get('/work', async (req, res) => {
     const posts = await Post.find({ category: "work" }).sort({ createdAt: 1 }).lean();
-    res.render('pages/work', { title: 'Work — Jinsu Kim', posts });
+    res.render('pages/work', { title: 'Project — Jinsu Kim', posts });
 });
 
 router.get('/posts/new', passwordGate, (req, res) => {
