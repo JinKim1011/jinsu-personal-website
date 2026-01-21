@@ -72,19 +72,71 @@
 
                 <div class="items-responsive">
                     <div class="items-responsive__tertiary info-section">
-                        <a class="button size-l type-void" href="https://github.com/JinKim1011/jinsu-personal-website">
-                            This Website
+                        <a class="button size-l type-void">
+                            Experience
                         </a>
 
-                        <p class="info-section_text">
-                            This website is built using a simple but core web technologies. The goal is
-                            to understand web fundamentals beyond just client-focused JavaScript libraries.
-                        </p>
-
-                        <p class="info-section_text">
-                            I set up a simple backend, developed controllers and models, implemented CRUD functionality,
-                            and configured the server-side database.
-                        </p>
+                        <ul class="experience-list">
+                            <li class="experience-list__item">
+                                <a class="button size-m type-void" href="https://1komma5.com/en/" target="_blank">
+                                    1KOMMA5°, Product Designer
+                                </a>
+                                <p class="experience-list__item-desc">
+                                    Sep 2025 - Present, Berlin (Work Study)
+                                </p>
+                            </li>
+                            <li class="experience-list__item">
+                                <a class="button size-m type-void" href="https://rey.com/" target="_blank">
+                                    Rey, Product Designer
+                                </a>
+                                <p class="experience-list__item-desc">
+                                    Mar 2025 - Aug 2025, Berlin (Work Study)
+                                </p>
+                            </li>
+                            <li class="experience-list__item">
+                                <a class="button size-m type-void">
+                                    Bosalpim, Founding Designer
+                                </a>
+                                <p class="experience-list__item-desc">
+                                    Jun 2023 - Mar 2024, Seoul (Full-time)
+                                </p>
+                            </li>
+                            <li class="experience-list__item">
+                                <a class="button size-m type-void" href="https://business.daangn.com/" target="_blank">
+                                    Karrot, Product Designer
+                                </a>
+                                <p class="experience-list__item-desc">
+                                    Oct 2022 - Jun 2023, Seoul (Full-time)
+                                </p>
+                            </li>
+                            <li class="experience-list__item" data-hidden="true">
+                                <a class="button size-m type-void">
+                                    MyMusicSheet, Product Lead
+                                </a>
+                                <p class="experience-list__item-desc">
+                                    Apr 2021 - Oct 2022, Seoul (Full-time)
+                                </p>
+                            </li>
+                            <li class="experience-list__item" data-hidden="true">
+                                <a class="button size-m type-void" href="https://flex.team/" target="_blank">
+                                    flex, Product Designer
+                                </a>
+                                <p class="experience-list__item-desc">
+                                    Mar 2020 - Apr 2021, Seoul (Full-time)
+                                </p>
+                            </li>
+                            <li class="experience-list__item" data-hidden="true">
+                                <a class="button size-m type-void">
+                                    kokomu.jp, Founding Designer
+                                </a>
+                                <p class="experience-list__item-desc">
+                                    Jul 2019 - Jun 2020, Seoul (Full-time)
+                                </p>
+                            </li>
+                        </ul>
+                        <a class="button size-m type-void see-more-button" id="experience-toggle">
+                            ↓ See More
+                        </a>
                     </div>
                     <div class="items-responsive__fourth post-section">
                         <div class="blog-section">
@@ -133,6 +185,22 @@
             </main>
 
             <%- include('../partials/footer') %>
+
+                <script>
+                    const button = document.getElementById('experience-toggle');
+                    let expanded = false;
+
+                    button.addEventListener('click', () => {
+                        expanded = !expanded;
+
+                        document.querySelectorAll('.experience-list__item[data-hidden]')
+                            .forEach(li => {
+                                li.setAttribute('data-hidden', expanded ? 'false' : 'true');
+                            });
+
+                        button.textContent = expanded ? '↑ See Less' : '↓ See More';
+                    });
+                </script>
     </body>
 
 
