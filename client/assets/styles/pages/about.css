@@ -92,6 +92,11 @@
 .experience-list__item>.experience-list__item-desc {
     margin: var(--spacing-xxxs) 0 0;
     color: var(--color-text-default);
+    max-width: 512px;
+}
+
+.experience-list__item[data-hidden="true"] {
+    display: none;
 }
 
 @media (min-width: 640px) {
