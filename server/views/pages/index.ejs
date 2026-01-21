@@ -185,6 +185,22 @@
             </main>
 
             <%- include('../partials/footer') %>
+
+                <script>
+                    const button = document.getElementById('experience-toggle');
+                    let expanded = false;
+
+                    button.addEventListener('click', () => {
+                        expanded = !expanded;
+
+                        document.querySelectorAll('.experience-list__item[data-hidden]')
+                            .forEach(li => {
+                                li.setAttribute('data-hidden', expanded ? 'false' : 'true');
+                            });
+
+                        button.textContent = expanded ? '↑ See Less' : '↓ See More';
+                    });
+                </script>
     </body>
 
 
